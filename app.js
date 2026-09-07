@@ -3,7 +3,7 @@ let velocidad = 160;
 let indicePalabra = 0;
 let intervaloLectura = null;
 let temporizador = null;
-let segundosRestantes = 30;
+let segundosRestantes = 600;
 let pausado = false;
 let lecturaTerminada = false;
 
@@ -881,7 +881,7 @@ function reiniciarLectura() {
 
     velocidad = 160;
     indicePalabra = 0;
-    segundosRestantes = 30;
+    segundosRestantes = 600;
     pausado = false;
     lecturaTerminada = false;
 
