@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reto Lector</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 0;
+            color: #263238;
+        }
+
+        .contenedor {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.10);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #607d8b;
+            margin-bottom: 30px;
+        }
+
+        .nivel {
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .titulo-lectura {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 25px;
+        }
+
+        .controles {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .boton-velocidad {
+            background: #e3f2fd;
+        }
+
+        .boton-principal {
+            background: #1976d2;
+            color: white;
+        }
+
+        .lectura {
+            line-height: 2;
+            font-size: 21px;
+            padding: 25px;
+            background: #fafafa;
+            border-radius: 15px;
+            min-height: 300px;
+        }
+
+        .palabra {
+            transition: background 0.1s;
+        }
+
+        .palabra.activa {
+            background: #ffeb3b;
+            border-radius: 4px;
+            padding: 2px 4px;
+        }
+
+        .informacion {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .barra {
+            width: 100%;
+            height: 14px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progreso {
+            height: 100%;
+            width: 0%;
+            background: #43a047;
+            transition: width 0.3s;
+        }
+
+        .mensaje {
+            text-align: center;
+            margin-top: 25px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="contenedor">
+
+    <h1>📖 RETO LECTOR</h1>
+
+    <div class="subtitulo">
+        Lee • Comprende • Interpreta • Opina
+    </div>
+
+    <div class="nivel">
+        🌱 NIVEL: EXPLORADORES
+    </div>
+
+    <div class="titulo-lectura">
+        Un visitante de un pequeño planeta
+    </div>
+
+    <div class="controles">
+
+        <button class="boton-velocidad" onclick="disminuirVelocidad()">
+            −
+        </button>
+
+        <span>
+            🚀 <span id="velocidad">160</span> ppm
+        </span>
+
+        <button class="boton-velocidad" onclick="aumentarVelocidad()">
+            +
+        </button>
+
+        <button class="boton-principal" onclick="iniciarLectura()">
+            ▶ Iniciar lectura
+        </button>
+
+        <button class="boton-principal" onclick="pausarLectura()">
+            ⏸ Pausar
+        </button>
+
+    </div>
+
+    <div class="informacion">
+        <span>⏱️ <span id="tiempo">10:00</span></span>
+        <span><span id="porcentaje">0</span>%</span>
+    </div>
+
+    <div class="barra">
+        <div class="progreso" id="progreso"></div>
+    </div>
+
+    <div class="lectura" id="lectura"></div>
+
+    <div class="mensaje" id="mensaje">
+        Pulsa "Iniciar lectura" para comenzar tu reto.
+    </div>
+
+</div>
+
+<script>
+
+const texto = `
+El piloto había aprendido que un viaje puede comenzar de manera inesperada.
+Una tarde, mientras atravesaba una zona desértica, su avión presentó una falla
+y tuvo que aterrizar lejos de cualquier ciudad. El lugar parecía completamente
+vacío. No había casas, árboles ni personas cerca.
+
+Mientras intentaba solucionar el problema de su avión, escuchó una pequeña voz.
+Al levantar la mirada encontró a un niño de apariencia extraña que lo observaba
+con mucha tranquilidad. El visitante no parecía preocupado por estar en medio
+del desierto. En lugar de preguntar dónde se encontraba, hizo una petición que
+sorprendió al piloto: quería que le dibujara un animal.
+
+El piloto intentó dibujar varias veces, pero ninguna imagen parecía satisfacer
+al visitante. Finalmente, cansado, dibujó una caja y explicó que dentro estaba
+el animal que buscaba. El niño sonrió. Para él, aquella caja no era solamente
+un dibujo. Su imaginación podía completar lo que los ojos no podían ver.
+
+Poco a poco, el piloto descubrió que aquel visitante vivía en un planeta muy
+pequeño. Allí cuidaba sus plantas, limpiaba sus volcanes y observaba con
+atención todo lo que ocurría a su alrededor. Entre todas las cosas que había
+conocido, existía una flor que ocupaba un lugar especial en su pensamiento.
+
+El visitante decidió viajar porque quería conocer otros lugares y comprender
+mejor el comportamiento de los adultos. En cada planeta encontraba personas
+ocupadas en diferentes actividades. Algunos buscaban constantemente que los
+demás los admiraran. Otros repetían tareas sin preguntarse por qué las hacían.
+También encontró personas convencidas de que poseer muchas cosas era la mejor
+manera de demostrar su importancia.
+
+Cada encuentro le produjo nuevas preguntas. El visitante comenzó a comprender
+que crecer no siempre significa aprender a mirar mejor. Algunas personas
+parecían haber olvidado la imaginación, la curiosidad y la capacidad de
+preguntarse por el sentido de lo que hacen.
+
+Cuando llegó a la Tierra encontró muchas flores parecidas a la que conocía.
+Al principio se sintió confundido. Había pensado que su flor era única.
+Entonces comprendió algo importante: una persona, un animal o incluso una
+planta puede adquirir un significado especial cuando existe una relación de
+cuidado y tiempo.
+
+El visitante había dedicado tiempo a su flor. La había protegido, escuchado
+y cuidado. Por eso, aunque existieran muchas flores parecidas, aquella tenía
+un valor diferente para él.
+
+Durante su encuentro con el piloto también aprendió que la amistad necesita
+tiempo. No basta con conocer a alguien durante unos minutos. Las relaciones se
+construyen poco a poco mediante la confianza, la responsabilidad y los momentos
+compartidos.
+
+El piloto también cambió. Antes pensaba principalmente en reparar su avión y
+regresar rápidamente a su vida cotidiana. Después de conocer al visitante,
+comenzó a observar las cosas de otra manera. Descubrió que algunas preguntas
+importantes no tienen respuestas rápidas.
+
+Al final, los dos comprendieron que existen cosas que no pueden medirse con
+dinero ni guardarse en una caja. La amistad, la confianza, el cuidado y los
+recuerdos adquieren valor porque las personas deciden dedicarles tiempo.
+
+El piloto nunca volvió a mirar el desierto de la misma manera. Aquel lugar que
+parecía vacío había terminado convirtiéndose en el escenario de una de las
+experiencias más importantes de su vida.
+`;
+
+const palabras = texto.trim().split(/\s+/);
+
+const contenedorLectura = document.getElementById("lectura");
+
+palabras.forEach((palabra, indice) => {
+
+    const span = document.createElement("span");
+
+    span.textContent = palabra + " ";
+    span.classList.add("palabra");
+    span.id = "palabra-" + indice;
+
+    contenedorLectura.appendChild(span);
+
+});
+
+
+let velocidad = 160;
+let indiceActual = 0;
+let intervalo = null;
+let pausado = false;
+
+
+function iniciarLectura() {
+
+    if (intervalo !== null) {
+        return;
+    }
+
+    pausado = false;
+
+    const tiempoPorPalabra = 60000 / velocidad;
+
+    intervalo = setInterval(() => {
+
+        if (!pausado) {
+
+            document.querySelectorAll(".palabra").forEach(p => {
+                p.classList.remove("activa");
+            });
+
+            const palabraActual =
+                document.getElementById("palabra-" + indiceActual);
+
+            if (palabraActual) {
+
+                palabraActual.classList.add("activa");
+
+                indiceActual++;
+
+                actualizarProgreso();
+
+            } else {
+
+                finalizarLectura();
+
+            }
+
+        }
+
+    }, tiempoPorPalabra);
+
+    document.getElementById("mensaje").textContent =
+        "📖 ¡Lee con atención! Sigue cada palabra.";
+
+}
+
+
+function pausarLectura() {
+
+    pausado = !pausado;
+
+    if (pausado) {
+
+        document.getElementById("mensaje").textContent =
+            "⏸️ Lectura pausada.";
+
+    } else {
+
+        document.getElementById("mensaje").textContent =
+            "📖 Lectura nuevamente en marcha.";
+
+    }
+
+}
+
+
+function actualizarProgreso() {
+
+    const porcentaje =
+        Math.round((indiceActual / palabras.length) * 100);
+
+    document.getElementById("porcentaje").textContent = porcentaje;
+
+    document.getElementById("progreso").style.width =
+        porcentaje + "%";
+
+}
+
+
+function aumentarVelocidad() {
+
+    if (velocidad < 220) {
+
+        velocidad += 10;
+
+        document.getElementById("velocidad").textContent =
+            velocidad;
+
+        reiniciarIntervalo();
+
+    }
+
+}
+
+
+function disminuirVelocidad() {
+
+    if (velocidad > 120) {
+
+        velocidad -= 10;
+
+        document.getElementById("velocidad").textContent =
+            velocidad;
+
+        reiniciarIntervalo();
+
+    }
+
+}
+
+
+function reiniciarIntervalo() {
+
+    if (intervalo !== null) {
+
+        clearInterval(intervalo);
+        intervalo = null;
+
+        iniciarLectura();
+
+    }
+
+}
+
+
+function finalizarLectura() {
+
+    clearInterval(intervalo);
+    intervalo = null;
+
+    document.getElementById("mensaje").textContent =
+        "🎉 ¡Lectura completada! Muy buen trabajo.";
+
+}
+
+
+</script>
+
+</body>
+</html>
