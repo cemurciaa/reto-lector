@@ -28,6 +28,23 @@ document.addEventListener("DOMContentLoaded", () => {
 // CARGAR LECTURA
 // ======================================================
 
+```javascript
+function comenzarReto() {
+    const inicio = document.getElementById("pantalla-inicio");
+    const lectura = document.getElementById("pantalla-lectura");
+
+    if (inicio) {
+        inicio.classList.remove("activa");
+    }
+
+    if (lectura) {
+        lectura.classList.add("activa");
+    }
+
+    reiniciarLectura();
+}
+```
+
 function cargarLectura() {
 
     const lectura = document.getElementById("lectura");
