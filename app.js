@@ -3,7 +3,7 @@ let velocidad = 160;
 let indicePalabra = 0;
 let intervaloLectura = null;
 let temporizador = null;
-let segundosRestantes = 600;
+let segundosRestantes = 30;
 let pausado = false;
 let lecturaTerminada = false;
 
