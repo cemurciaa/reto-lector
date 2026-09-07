@@ -1,4 +1,4 @@
-```javascript
+
 let velocidad = 160;
 let indicePalabra = 0;
 let intervaloLectura = null;
