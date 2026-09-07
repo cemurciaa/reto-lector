@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // CARGAR LECTURA
 // ======================================================
 
-```javascript
 function comenzarReto() {
     const inicio = document.getElementById("pantalla-inicio");
     const lectura = document.getElementById("pantalla-lectura");
