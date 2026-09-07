@@ -42,7 +42,7 @@ function comenzarReto() {
 
     reiniciarLectura();
 }
-```
+
 
 function cargarLectura() {
 
@@ -978,4 +978,3 @@ function mezclarArray(array) {
     return array;
 
 }
-```
