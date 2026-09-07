@@ -881,7 +881,7 @@ function reiniciarLectura() {
 
     velocidad = 160;
     indicePalabra = 0;
-    segundosRestantes = 600;
+    segundosRestantes = 30;
     pausado = false;
     lecturaTerminada = false;
 
