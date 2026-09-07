@@ -862,6 +862,9 @@ function mostrarResultado() {
         mensajeFinal.textContent = mensaje;
     }
 
+document.getElementById("correctas").textContent = respuestasCorrectas;
+document.getElementById("velocidad-final").textContent = velocidad;
+
 }
 
 
