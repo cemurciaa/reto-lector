@@ -115,7 +115,6 @@ function comenzarReto() {
     reiniciarLectura();
 }
 
-
 function cargarLectura() {
 
     const lectura = document.getElementById("lectura");
@@ -124,7 +123,11 @@ function cargarLectura() {
         return;
     }
 
-    const texto = `
+    let texto = "";
+
+    if (nivelSeleccionado === "6-7") {
+
+        texto = `
 El piloto había aprendido que un viaje puede comenzar de manera inesperada.
 Una tarde, mientras atravesaba una zona desértica, su avión presentó una falla
 y tuvo que aterrizar lejos de cualquier ciudad. El lugar parecía completamente
@@ -170,8 +173,8 @@ un valor diferente para él.
 
 Durante su encuentro con el piloto también aprendió que la amistad necesita
 tiempo. No basta con conocer a alguien durante unos minutos. Las relaciones se
-construyen poco a poco mediante la confianza, la responsabilidad y los momentos
-compartidos.
+construyen poco a poco mediante la confianza, la responsabilidad y los
+momentos compartidos.
 
 El piloto también cambió. Antes pensaba principalmente en reparar su avión y
 regresar rápidamente a su vida cotidiana. Después de conocer al visitante,
@@ -186,6 +189,109 @@ El piloto nunca volvió a mirar el desierto de la misma manera. Aquel lugar que
 parecía vacío había terminado convirtiéndose en el escenario de una de las
 experiencias más importantes de su vida.
 `;
+
+    } else if (nivelSeleccionado === "8-9") {
+
+        texto = `
+Una noticia comenzó a circular por el pueblo desde muy temprano. Muchas
+personas sabían que dos hermanos buscaban a Santiago para matarlo. Lo habían
+dicho públicamente y no parecía existir ningún secreto sobre sus intenciones.
+
+Sin embargo, conocer una información no siempre significa actuar frente a
+ella. Algunas personas pensaron que alguien más se encargaría de avisarle.
+Otras creyeron que los hermanos solamente estaban hablando y que finalmente
+no cumplirían lo que habían anunciado.
+
+La noticia pasó de una persona a otra, pero nadie asumió completamente la
+responsabilidad de detener lo que estaba por ocurrir. Cada individuo parecía
+tener una explicación para no intervenir.
+
+Los hermanos justificaban su decisión utilizando una idea de honor. Para
+ellos, la presión social y las expectativas de la comunidad tenían un peso
+enorme. Creían que debían actuar para recuperar el honor de su familia.
+
+Pero la situación también mostraba un problema más profundo. Cuando muchas
+personas conocen un peligro y cada una supone que otra persona actuará, la
+responsabilidad puede terminar diluyéndose.
+
+Algunas personas intentaron avisar, pero los mensajes no llegaron a tiempo.
+Otros recibieron información incompleta o pensaron que el asunto no era tan
+grave como parecía.
+
+La tragedia no puede comprenderse solamente observando a quienes llevaron a
+cabo el asesinato. También es necesario analizar el silencio, la pasividad,
+la presión social y las fallas de comunicación que rodearon los hechos.
+
+Después, muchos habitantes recordaron que habían escuchado alguna señal de
+advertencia. Algunos dijeron que pensaban que otra persona ya había avisado.
+Otros reconocieron que no imaginaron que las amenazas terminarían convirtiéndose
+en una tragedia.
+
+La historia plantea así una pregunta difícil: ¿qué responsabilidad tiene una
+persona cuando sabe que algo malo puede suceder y decide no intervenir?
+
+La respuesta no es sencilla. Una comunidad puede convertirse en espectadora
+cuando cada integrante considera que el problema pertenece a los demás.
+
+Por eso, más allá de la tragedia individual, la historia invita a reflexionar
+sobre la responsabilidad colectiva, la importancia de comunicar información
+seria y las consecuencias de aceptar una injusticia simplemente porque otros
+también permanecen en silencio.
+
+Comprender estos hechos exige mirar más allá de quién sostuvo un arma. También
+es necesario preguntarse qué decisiones, silencios, creencias y omisiones
+permitieron que la tragedia avanzara.
+`;
+
+    } else if (nivelSeleccionado === "10-11") {
+
+        texto = `
+Gregorio despertó una mañana y descubrió que su cuerpo había cambiado de una
+forma que no podía comprender. Sin embargo, antes de pensar en lo que estaba
+ocurriendo, su primera preocupación fue el trabajo.
+
+Había pasado mucho tiempo cumpliendo con sus obligaciones porque sabía que su
+familia dependía económicamente de él. Aunque no disfrutaba su empleo, sentía
+que debía continuar trabajando para ayudar a los demás.
+
+Después de su transformación, la relación con su familia comenzó a cambiar.
+Al principio, su hermana Grete fue quien más se preocupó por él. Le llevaba
+comida y trataba de comprender sus nuevas necesidades.
+
+Pero con el paso del tiempo, la situación económica de la familia cambió.
+Otros miembros tuvieron que comenzar a trabajar y Gregorio dejó de cumplir
+la función que antes realizaba.
+
+La transformación física terminó acompañada de una transformación en la
+forma como los demás lo veían. Mientras podía trabajar y aportar dinero,
+su presencia parecía tener una utilidad evidente. Cuando dejó de hacerlo,
+la familia comenzó a percibirlo de otra manera.
+
+En una ocasión, Gregorio salió de su habitación mientras Grete tocaba el
+violín. Su presencia provocó una reacción negativa y la distancia entre él
+y su familia aumentó.
+
+Gregorio todavía conservaba sentimientos, recuerdos y deseos. Sin embargo,
+cada vez resultaba más difícil para los demás reconocer esa humanidad.
+
+La historia permite preguntarse si el valor de una persona depende de lo que
+produce, de lo que aporta económicamente o de su utilidad para los demás.
+
+La transformación puede entenderse entonces no solamente como un cambio
+físico. También representa una crisis de identidad, pertenencia y dignidad.
+
+Cuando una persona deja de ser considerada útil, puede experimentar rechazo
+aunque continúe teniendo sentimientos, necesidades y derechos.
+
+Por eso, la historia invita a reflexionar sobre la manera en que valoramos a
+las personas. Una sociedad que mide a alguien únicamente por su productividad
+corre el riesgo de olvidar que la dignidad humana no depende de la utilidad.
+
+La transformación de Gregorio revela así un conflicto que va mucho más allá
+de su apariencia. La verdadera pregunta es qué sucede cuando una persona
+deja de cumplir el papel que los demás esperan de ella.
+`;
+    }
 
     const palabras = texto.trim().split(/\s+/);
 
