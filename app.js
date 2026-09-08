@@ -12,6 +12,30 @@ let preguntaActual = 0;
 let respuestasCorrectas = 0;
 let seleccionActual = null;
 
+// ======================================================
+// NIVEL SELECCIONADO
+// ======================================================
+
+let nivelSeleccionado = "6-7";
+
+const datosNiveles = {
+
+    "6-7": {
+        nombre: "🌱 EXPLORADORES — 6.º–7.º",
+        titulo: "Un visitante de un pequeño planeta"
+    },
+
+    "8-9": {
+        nombre: "🔎 INVESTIGADORES — 8.º–9.º",
+        titulo: "Una muerte que todos conocían"
+    },
+
+    "10-11": {
+        nombre: "🧠 PENSADORES — 10.º–11.º",
+        titulo: "La transformación"
+    }
+
+};
 
 // ======================================================
 // INICIO
@@ -27,6 +51,55 @@ document.addEventListener("DOMContentLoaded", () => {
 // ======================================================
 // CARGAR LECTURA
 // ======================================================
+
+```javascript
+// ======================================================
+// SELECCIONAR NIVEL
+// ======================================================
+
+function seleccionarNivel(nivel) {
+
+    nivelSeleccionado = nivel;
+
+    const datos = datosNiveles[nivel];
+
+    if (!datos) {
+        return;
+    }
+
+    const inicio =
+        document.getElementById("pantalla-inicio");
+
+    const lectura =
+        document.getElementById("pantalla-lectura");
+
+    const nivelElemento =
+        document.getElementById("nivel-actual");
+
+    const tituloElemento =
+        document.getElementById("titulo-lectura");
+
+    if (inicio) {
+        inicio.classList.remove("activa");
+    }
+
+    if (lectura) {
+        lectura.classList.add("activa");
+    }
+
+    if (nivelElemento) {
+        nivelElemento.textContent = datos.nombre;
+    }
+
+    if (tituloElemento) {
+        tituloElemento.textContent = datos.titulo;
+    }
+
+    reiniciarLectura();
+
+    cargarLectura();
+
+}
 
 function comenzarReto() {
     const inicio = document.getElementById("pantalla-inicio");
