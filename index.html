@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -39,7 +39,7 @@
 
 
         <!-- ================================================= -->
-        <!-- PANTALLA DE INTRODUCCIÓN -->
+        <!-- PANTALLA DE INICIO -->
         <!-- ================================================= -->
 
         <section id="pantalla-inicio"
@@ -47,14 +47,119 @@
 
             <div class="centro">
 
-                <h2>🌱 Nivel Exploradores</h2>
+                <h2>🎯 Selecciona tu nivel</h2>
 
-                <h2>
-                    Un visitante de un pequeño planeta
-                </h2>
+                <p>
+                    Elige el nivel correspondiente a tu grado
+                    para comenzar el reto de lectura.
+                </p>
 
             </div>
 
+
+            <!-- ================================================= -->
+            <!-- NIVELES -->
+            <!-- ================================================= -->
+
+            <div class="niveles">
+
+
+                <!-- 6.º - 7.º -->
+
+                <div class="nivel-card">
+
+                    <div class="nivel-icono">
+                        🌱
+                    </div>
+
+                    <h3>
+                        Exploradores
+                    </h3>
+
+                    <p>
+                        6.º – 7.º
+                    </p>
+
+                    <p>
+                        Comprender, imaginar y descubrir.
+                    </p>
+
+                    <button class="btn-principal"
+                            onclick="seleccionarNivel('6-7')">
+
+                        🚀 Elegir nivel
+
+                    </button>
+
+                </div>
+
+
+                <!-- 8.º - 9.º -->
+
+                <div class="nivel-card">
+
+                    <div class="nivel-icono">
+                        🔎
+                    </div>
+
+                    <h3>
+                        Investigadores
+                    </h3>
+
+                    <p>
+                        8.º – 9.º
+                    </p>
+
+                    <p>
+                        Analizar pistas, hechos y responsabilidades.
+                    </p>
+
+                    <button class="btn-principal"
+                            onclick="seleccionarNivel('8-9')">
+
+                        🔍 Elegir nivel
+
+                    </button>
+
+                </div>
+
+
+                <!-- 10.º - 11.º -->
+
+                <div class="nivel-card">
+
+                    <div class="nivel-icono">
+                        🧠
+                    </div>
+
+                    <h3>
+                        Pensadores
+                    </h3>
+
+                    <p>
+                        10.º – 11.º
+                    </p>
+
+                    <p>
+                        Interpretar, argumentar y pensar críticamente.
+                    </p>
+
+                    <button class="btn-principal"
+                            onclick="seleccionarNivel('10-11')">
+
+                        🧠 Elegir nivel
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- INFORMACIÓN DEL RETO -->
+            <!-- ================================================= -->
 
             <div class="instrucciones">
 
@@ -83,17 +188,6 @@
             </div>
 
 
-            <div class="centro">
-
-                <button class="btn-principal"
-                        onclick="comenzarReto()">
-
-                    🚀 COMENZAR RETO
-
-                </button>
-
-            </div>
-
         </section>
 
 
@@ -106,14 +200,16 @@
                  class="pantalla">
 
 
-            <div class="nivel">
+            <div class="nivel"
+                 id="nivel-actual">
 
                 🌱 EXPLORADORES — 6.º–7.º
 
             </div>
 
 
-            <h2 class="titulo">
+            <h2 class="titulo"
+                id="titulo-lectura">
 
                 Un visitante de un pequeño planeta
 
@@ -392,3 +488,4 @@
 </body>
 
 </html>
+```
