@@ -123,11 +123,9 @@ function cargarLectura() {
         return;
     }
 
-    let texto = "";
+    const lecturas = {
 
-    if (nivelSeleccionado === "6-7") {
-
-        texto = `
+        "6-7": `
 El piloto había aprendido que un viaje puede comenzar de manera inesperada.
 Una tarde, mientras atravesaba una zona desértica, su avión presentó una falla
 y tuvo que aterrizar lejos de cualquier ciudad. El lugar parecía completamente
@@ -188,11 +186,9 @@ recuerdos adquieren valor porque las personas deciden dedicarles tiempo.
 El piloto nunca volvió a mirar el desierto de la misma manera. Aquel lugar que
 parecía vacío había terminado convirtiéndose en el escenario de una de las
 experiencias más importantes de su vida.
-`;
+`,
 
-    } else if (nivelSeleccionado === "8-9") {
-
-        texto = `
+        "8-9": `
 Una noticia comenzó a circular por el pueblo desde muy temprano. Muchas
 personas sabían que dos hermanos buscaban a Santiago para matarlo. Lo habían
 dicho públicamente y no parecía existir ningún secreto sobre sus intenciones.
@@ -241,11 +237,9 @@ también permanecen en silencio.
 Comprender estos hechos exige mirar más allá de quién sostuvo un arma. También
 es necesario preguntarse qué decisiones, silencios, creencias y omisiones
 permitieron que la tragedia avanzara.
-`;
+`,
 
-    } else if (nivelSeleccionado === "10-11") {
-
-        texto = `
+        "10-11": `
 Gregorio despertó una mañana y descubrió que su cuerpo había cambiado de una
 forma que no podía comprender. Sin embargo, antes de pensar en lo que estaba
 ocurriendo, su primera preocupación fue el trabajo.
@@ -290,7 +284,14 @@ corre el riesgo de olvidar que la dignidad humana no depende de la utilidad.
 La transformación de Gregorio revela así un conflicto que va mucho más allá
 de su apariencia. La verdadera pregunta es qué sucede cuando una persona
 deja de cumplir el papel que los demás esperan de ella.
-`;
+`
+
+    };
+
+    const texto = lecturas[nivelSeleccionado];
+
+    if (!texto) {
+        return;
     }
 
     const palabras = texto.trim().split(/\s+/);
@@ -310,7 +311,6 @@ deja de cumplir el papel que los demás esperan de ella.
     });
 
 }
-
 
 // ======================================================
 // INICIAR LECTURA
