@@ -623,159 +623,497 @@ function mostrarPantallaPreguntas() {
 
 function iniciarPreguntas() {
 
-    preguntas = [
+    const preguntasPorNivel = {
 
-        {
-            pregunta:
-                "¿Por qué el piloto tuvo que aterrizar en el desierto?",
+        // ==================================================
+        // EXPLORADORES — 6.º–7.º
+        // ==================================================
 
-            opciones: [
-                "Porque quería conocer el desierto.",
-                "Porque estaba buscando al visitante.",
-                "Porque su avión presentó una falla.",
-                "Porque quería descansar."
-            ],
+        "6-7": [
 
-            correcta: 2,
-            tipo: "Literal"
-        },
+            {
+                pregunta:
+                    "¿Por qué el piloto tuvo que aterrizar en el desierto?",
 
-        {
-            pregunta:
-                "¿Qué le pidió inicialmente el visitante al piloto?",
+                opciones: [
+                    "Porque quería conocer el desierto.",
+                    "Porque estaba buscando al visitante.",
+                    "Porque su avión presentó una falla.",
+                    "Porque quería descansar."
+                ],
 
-            opciones: [
-                "Que reparara su avión.",
-                "Que dibujara un animal.",
-                "Que lo llevara a una ciudad.",
-                "Que buscara una flor."
-            ],
+                correcta: 2,
+                tipo: "Literal"
+            },
 
-            correcta: 1,
-            tipo: "Literal"
-        },
+            {
+                pregunta:
+                    "¿Qué le pidió inicialmente el visitante al piloto?",
 
-        {
-            pregunta:
-                "¿Qué dibujó finalmente el piloto para satisfacer al visitante?",
+                opciones: [
+                    "Que reparara su avión.",
+                    "Que dibujara un animal.",
+                    "Que lo llevara a una ciudad.",
+                    "Que buscara una flor."
+                ],
 
-            opciones: [
-                "Una flor.",
-                "Un planeta.",
-                "Una caja.",
-                "Un avión."
-            ],
+                correcta: 1,
+                tipo: "Literal"
+            },
 
-            correcta: 2,
-            tipo: "Literal"
-        },
+            {
+                pregunta:
+                    "¿Qué dibujó finalmente el piloto para satisfacer al visitante?",
 
-        {
-            pregunta:
-                "¿Qué cuidaba el visitante en su pequeño planeta?",
+                opciones: [
+                    "Una flor.",
+                    "Un planeta.",
+                    "Una caja.",
+                    "Un avión."
+                ],
 
-            opciones: [
-                "Máquinas y vehículos.",
-                "Casas y edificios.",
-                "Plantas y volcanes.",
-                "Animales salvajes."
-            ],
+                correcta: 2,
+                tipo: "Literal"
+            },
 
-            correcta: 2,
-            tipo: "Literal"
-        },
+            {
+                pregunta:
+                    "¿Qué cuidaba el visitante en su pequeño planeta?",
 
-        {
-            pregunta:
-                "¿Por qué el visitante pudo aceptar el dibujo de la caja?",
+                opciones: [
+                    "Máquinas y vehículos.",
+                    "Casas y edificios.",
+                    "Plantas y volcanes.",
+                    "Animales salvajes."
+                ],
 
-            opciones: [
-                "Porque no sabía cómo era un animal.",
-                "Porque su imaginación podía completar lo que no aparecía en el dibujo.",
-                "Porque quería hacer feliz al piloto.",
-                "Porque la caja era su objeto favorito."
-            ],
+                correcta: 2,
+                tipo: "Literal"
+            },
 
-            correcta: 1,
-            tipo: "Inferencial"
-        },
+            {
+                pregunta:
+                    "¿Por qué el visitante pudo aceptar el dibujo de la caja?",
 
-        {
-            pregunta:
-                "¿Qué puede inferirse de las observaciones del visitante sobre los adultos?",
+                opciones: [
+                    "Porque no sabía cómo era un animal.",
+                    "Porque su imaginación podía completar lo que no aparecía en el dibujo.",
+                    "Porque quería hacer feliz al piloto.",
+                    "Porque la caja era su objeto favorito."
+                ],
 
-            opciones: [
-                "Que todos los adultos son malos.",
-                "Que los adultos nunca trabajan.",
-                "Que algunas personas pierden la curiosidad y olvidan preguntarse por el sentido de sus acciones.",
-                "Que los adultos no pueden viajar."
-            ],
+                correcta: 1,
+                tipo: "Inferencial"
+            },
 
-            correcta: 2,
-            tipo: "Inferencial"
-        },
+            {
+                pregunta:
+                    "¿Qué puede inferirse de las observaciones del visitante sobre los adultos?",
 
-        {
-            pregunta:
-                "¿Por qué la flor del visitante tiene un valor especial para él aunque existan muchas flores parecidas?",
+                opciones: [
+                    "Que todos los adultos son malos.",
+                    "Que los adultos nunca trabajan.",
+                    "Que algunas personas pierden la curiosidad y olvidan preguntarse por el sentido de sus acciones.",
+                    "Que los adultos no pueden viajar."
+                ],
 
-            opciones: [
-                "Porque es la flor más grande.",
-                "Porque dedicó tiempo a cuidarla y construyó una relación con ella.",
-                "Porque ninguna otra flor puede crecer.",
-                "Porque fue la primera flor que vio."
-            ],
+                correcta: 2,
+                tipo: "Inferencial"
+            },
 
-            correcta: 1,
-            tipo: "Inferencial"
-        },
+            {
+                pregunta:
+                    "¿Por qué la flor del visitante tiene un valor especial para él aunque existan muchas flores parecidas?",
 
-        {
-            pregunta:
-                "¿Cuál de las siguientes situaciones representa mejor la responsabilidad que plantea la lectura?",
+                opciones: [
+                    "Porque es la flor más grande.",
+                    "Porque dedicó tiempo a cuidarla y construyó una relación con ella.",
+                    "Porque ninguna otra flor puede crecer.",
+                    "Porque fue la primera flor que vio."
+                ],
 
-            opciones: [
-                "Comprar muchos objetos para demostrar importancia.",
-                "Cuidar diariamente a una mascota y atender sus necesidades.",
-                "Evitar hablar con otras personas.",
-                "Trabajar solamente cuando alguien observa."
-            ],
+                correcta: 1,
+                tipo: "Inferencial"
+            },
 
-            correcta: 1,
-            tipo: "Crítica"
-        },
+            {
+                pregunta:
+                    "¿Cuál de las siguientes situaciones representa mejor la responsabilidad que plantea la lectura?",
 
-        {
-            pregunta:
-                "¿Cuál es el mensaje principal que puede extraerse de la lectura?",
+                opciones: [
+                    "Comprar muchos objetos para demostrar importancia.",
+                    "Cuidar diariamente a una mascota y atender sus necesidades.",
+                    "Evitar hablar con otras personas.",
+                    "Trabajar solamente cuando alguien observa."
+                ],
 
-            opciones: [
-                "Los viajes siempre terminan en lugares desconocidos.",
-                "Los adultos tienen más problemas que los niños.",
-                "Las relaciones adquieren valor mediante el tiempo, el cuidado y la responsabilidad.",
-                "La imaginación sirve solamente para dibujar."
-            ],
+                correcta: 1,
+                tipo: "Crítica"
+            },
 
-            correcta: 2,
-            tipo: "Crítica"
-        },
+            {
+                pregunta:
+                    "¿Cuál es el mensaje principal que puede extraerse de la lectura?",
 
-        {
-            pregunta:
-                "Un compañero afirma: 'No necesito dedicar tiempo a mis amigos porque una amistad verdadera siempre permanece'. ¿Cuál sería la mejor respuesta según la lectura?",
+                opciones: [
+                    "Los viajes siempre terminan en lugares desconocidos.",
+                    "Los adultos tienen más problemas que los niños.",
+                    "Las relaciones adquieren valor mediante el tiempo, el cuidado y la responsabilidad.",
+                    "La imaginación sirve solamente para dibujar."
+                ],
 
-            opciones: [
-                "Tiene razón porque las amistades no necesitan cuidado.",
-                "Las amistades solamente necesitan regalos.",
-                "Las relaciones necesitan tiempo, cuidado, confianza y momentos compartidos.",
-                "Es mejor tener muchos amigos para evitar depender de uno."
-            ],
+                correcta: 2,
+                tipo: "Crítica"
+            },
 
-            correcta: 2,
-            tipo: "Crítica"
-        }
+            {
+                pregunta:
+                    "Un compañero afirma: 'No necesito dedicar tiempo a mis amigos porque una amistad verdadera siempre permanece'. ¿Cuál sería la mejor respuesta según la lectura?",
 
-    ];
+                opciones: [
+                    "Tiene razón porque las amistades no necesitan cuidado.",
+                    "Las amistades solamente necesitan regalos.",
+                    "Las relaciones necesitan tiempo, cuidado, confianza y momentos compartidos.",
+                    "Es mejor tener muchos amigos para evitar depender de uno."
+                ],
+
+                correcta: 2,
+                tipo: "Crítica"
+            }
+
+        ],
+
+
+        // ==================================================
+        // INVESTIGADORES — 8.º–9.º
+        // ==================================================
+
+        "8-9": [
+
+            {
+                pregunta:
+                    "¿Qué noticia comenzó a circular por el pueblo?",
+
+                opciones: [
+                    "Que Santiago había abandonado el pueblo.",
+                    "Que había ocurrido un accidente.",
+                    "Que dos hermanos buscaban a Santiago para matarlo.",
+                    "Que Santiago quería viajar."
+                ],
+
+                correcta: 2,
+                tipo: "Literal"
+            },
+
+            {
+                pregunta:
+                    "¿Quiénes decidieron matar a Santiago?",
+
+                opciones: [
+                    "Dos amigos del pueblo.",
+                    "Dos hermanos.",
+                    "Un grupo de comerciantes.",
+                    "Los habitantes del pueblo."
+                ],
+
+                correcta: 1,
+                tipo: "Literal"
+            },
+
+            {
+                pregunta:
+                    "¿Qué concepto utilizaban los hermanos para justificar su decisión?",
+
+                opciones: [
+                    "La amistad.",
+                    "La justicia.",
+                    "La libertad.",
+                    "El honor."
+                ],
+
+                correcta: 3,
+                tipo: "Literal"
+            },
+
+            {
+                pregunta:
+                    "¿Qué ocurrió con la información sobre el peligro?",
+
+                opciones: [
+                    "Nadie llegó a conocerla.",
+                    "Fue guardada como un secreto.",
+                    "Pasó de una persona a otra, pero no llegó a detener la tragedia.",
+                    "Fue enviada inmediatamente a las autoridades."
+                ],
+
+                correcta: 2,
+                tipo: "Literal"
+            },
+
+            {
+                pregunta:
+                    "¿Qué puede inferirse del hecho de que los hermanos anunciaran públicamente sus intenciones?",
+
+                opciones: [
+                    "Que nadie podía conocer sus planes.",
+                    "Que existieron oportunidades para que alguien interviniera.",
+                    "Que querían abandonar el pueblo.",
+                    "Que no hablaban en serio."
+                ],
+
+                correcta: 1,
+                tipo: "Inferencial"
+            },
+
+            {
+                pregunta:
+                    "¿Por qué la responsabilidad de la tragedia es más compleja que señalar solamente a quienes llevaban las armas?",
+
+                opciones: [
+                    "Porque nadie conocía a Santiago.",
+                    "Porque Santiago había abandonado el pueblo.",
+                    "Porque también existieron silencio, pasividad, presión social y fallas de comunicación.",
+                    "Porque los hermanos nunca estuvieron en el pueblo."
+                ],
+
+                correcta: 2,
+                tipo: "Inferencial"
+            },
+
+            {
+                pregunta:
+                    "¿Qué función cumplen las expresiones relacionadas con 'pensé que alguien ya le había avisado'?",
+
+                opciones: [
+                    "Demostrar que todos actuaron inmediatamente.",
+                    "Mostrar cómo las personas trasladaban la responsabilidad a otros.",
+                    "Explicar por qué Santiago quería escapar.",
+                    "Demostrar que nadie conocía la noticia."
+                ],
+
+                correcta: 1,
+                tipo: "Inferencial"
+            },
+
+            {
+                pregunta:
+                    "Desde una perspectiva crítica, ¿qué problema existe al justificar una violencia utilizando el concepto de honor?",
+
+                opciones: [
+                    "Que el honor siempre evita los conflictos.",
+                    "Que las tradiciones hacen innecesaria la justicia.",
+                    "Que una presión social no convierte una acción violenta en una decisión moralmente correcta.",
+                    "Que solamente las autoridades pueden hablar de honor."
+                ],
+
+                correcta: 2,
+                tipo: "Crítica"
+            },
+
+            {
+                pregunta:
+                    "Un estudiante observa que un compañero está en peligro y piensa: 'Seguramente alguien más lo ayudará'. ¿Qué situación representa principalmente?",
+
+                opciones: [
+                    "Trabajo colaborativo.",
+                    "Difusión de la responsabilidad.",
+                    "Liderazgo positivo.",
+                    "Comunicación efectiva."
+                ],
+
+                correcta: 1,
+                tipo: "Crítica"
+            },
+
+            {
+                pregunta:
+                    "¿Cuál es la interpretación más completa de la tragedia presentada en la lectura?",
+
+                opciones: [
+                    "Fue únicamente consecuencia de una discusión personal.",
+                    "La tragedia ocurrió porque nadie conocía los planes.",
+                    "La presión social, la idea del honor, las fallas de comunicación y la pasividad colectiva contribuyeron al resultado.",
+                    "El problema fue solamente la falta de autoridad."
+                ],
+
+                correcta: 2,
+                tipo: "Crítica"
+            }
+
+        ],
+
+
+        // ==================================================
+        // PENSADORES — 10.º–11.º
+        // ==================================================
+
+        "10-11": [
+
+            {
+                pregunta:
+                    "¿Cuál fue una de las primeras preocupaciones de Gregorio después de su transformación?",
+
+                opciones: [
+                    "Viajar a otro lugar.",
+                    "Conocer nuevos amigos.",
+                    "El trabajo y sus obligaciones.",
+                    "Comprar una nueva casa."
+                ],
+
+                correcta: 2,
+                tipo: "Literal"
+            },
+
+            {
+                pregunta:
+                    "¿Por qué Gregorio continuaba trabajando aunque no disfrutaba su empleo?",
+
+                opciones: [
+                    "Porque quería ser famoso.",
+                    "Porque su familia dependía económicamente de él.",
+                    "Porque quería viajar.",
+                    "Porque no tenía otros intereses."
+                ],
+
+                correcta: 1,
+                tipo: "Literal"
+            },
+
+            {
+                pregunta:
+                    "¿Quién fue inicialmente la persona que más ayudó a Gregorio?",
+
+                opciones: [
+                    "Su padre.",
+                    "Su madre.",
+                    "Un compañero de trabajo.",
+                    "Su hermana Grete."
+                ],
+
+                correcta: 3,
+                tipo: "Literal"
+            },
+
+            {
+                pregunta:
+                    "¿Qué ocurrió cuando Gregorio salió de su habitación mientras Grete tocaba el violín?",
+
+                opciones: [
+                    "Todos celebraron su presencia.",
+                    "La familia decidió viajar.",
+                    "Su presencia provocó una reacción negativa.",
+                    "Gregorio comenzó a trabajar nuevamente."
+                ],
+
+                correcta: 2,
+                tipo: "Literal"
+            },
+
+            {
+                pregunta:
+                    "¿Qué puede inferirse del hecho de que Gregorio pensara primero en el trabajo después de transformarse?",
+
+                opciones: [
+                    "Que el trabajo no tenía ninguna importancia para él.",
+                    "Que había asumido una fuerte responsabilidad económica hacia su familia.",
+                    "Que quería abandonar a su familia.",
+                    "Que solamente le interesaba ganar dinero para sí mismo."
+                ],
+
+                correcta: 1,
+                tipo: "Inferencial"
+            },
+
+            {
+                pregunta:
+                    "¿Por qué cambió la relación de la familia con Gregorio?",
+
+                opciones: [
+                    "Porque Gregorio dejó de cumplir la función económica que antes desempeñaba.",
+                    "Porque decidió abandonar su casa.",
+                    "Porque comenzó a viajar.",
+                    "Porque dejó de recordar a su familia."
+                ],
+
+                correcta: 0,
+                tipo: "Inferencial"
+            },
+
+            {
+                pregunta:
+                    "¿Qué relación existe entre la transformación de Gregorio y la idea de que una persona puede ser valorada solamente por su utilidad?",
+
+                opciones: [
+                    "La transformación demuestra que la apariencia es lo único importante.",
+                    "La transformación demuestra que el trabajo siempre destruye las relaciones.",
+                    "La historia permite cuestionar una sociedad que valora a las personas principalmente por lo que producen.",
+                    "La historia demuestra que todas las familias rechazan a sus integrantes."
+                ],
+
+                correcta: 2,
+                tipo: "Crítica"
+            },
+
+            {
+                pregunta:
+                    "Un estudiante solamente busca a un compañero cuando necesita que le hagan las tareas. ¿Qué situación se relaciona mejor con el conflicto presentado en la lectura?",
+
+                opciones: [
+                    "Valorar a una persona principalmente por su utilidad.",
+                    "Construir una amistad basada en la confianza.",
+                    "Reconocer la dignidad de otra persona.",
+                    "Ayudar desinteresadamente."
+                ],
+
+                correcta: 0,
+                tipo: "Crítica"
+            },
+
+            {
+                pregunta:
+                    "¿Cuál es una interpretación profunda de la transformación de Gregorio?",
+
+                opciones: [
+                    "Es solamente un cambio físico sin consecuencias.",
+                    "Representa una crisis de identidad, pertenencia y dignidad.",
+                    "Demuestra que el trabajo es siempre negativo.",
+                    "Explica por qué todas las personas deben vivir solas."
+                ],
+
+                correcta: 1,
+                tipo: "Crítica"
+            },
+
+            {
+                pregunta:
+                    "Un estudiante afirma: 'Gregorio solamente importaba mientras podía mantener económicamente a su familia'. ¿Cuál sería la respuesta más crítica?",
+
+                opciones: [
+                    "Tiene razón porque el valor de una persona depende de su productividad.",
+                    "La familia siempre debe rechazar a quien deja de trabajar.",
+                    "La historia permite cuestionar la idea de que la dignidad de una persona dependa de su utilidad económica.",
+                    "Las personas solamente tienen valor cuando pueden ayudar económicamente."
+                ],
+
+                correcta: 2,
+                tipo: "Crítica"
+            }
+
+        ]
+
+    };
+
+
+    // ==================================================
+    // CARGAR PREGUNTAS DEL NIVEL SELECCIONADO
+    // ==================================================
+
+    preguntas = preguntasPorNivel[nivelSeleccionado];
+
+    if (!preguntas) {
+        preguntas = [];
+        return;
+    }
 
     preguntas = mezclarArray(preguntas);
 
@@ -785,7 +1123,6 @@ function iniciarPreguntas() {
     mostrarPregunta();
 
 }
-
 
 // ======================================================
 // MOSTRAR PREGUNTA
