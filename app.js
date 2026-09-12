@@ -508,13 +508,17 @@ function iniciarResaltado() {
             "palabra-" + indicePalabra
         );
 
-        // Cuando llega al final del texto
+        // Cuando termina la última palabra
         if (!palabra) {
 
             clearInterval(intervaloLectura);
             intervaloLectura = null;
 
+            clearInterval(intervaloTemporizador);
+            intervaloTemporizador = null;
+
             lecturaTerminada = true;
+            textoTerminado = true;
 
             actualizarProgreso();
 
@@ -522,10 +526,9 @@ function iniciarResaltado() {
                 "📚 ¡Has terminado la lectura! Pasemos a las preguntas."
             );
 
-            // Pasar automáticamente a las preguntas
             setTimeout(() => {
                 mostrarPantallaPreguntas();
-            }, 1200);
+            }, 1000);
 
             return;
         }
