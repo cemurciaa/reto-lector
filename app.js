@@ -490,32 +490,7 @@ const texto = lecturas[nivelSeleccionado];
     });
 }
 
-function iniciarLectura() {
-
-    if (lecturaTerminada) {
-        reiniciarLectura();
-    }
-
-    pausado = false;
-
-    actualizarMensaje(
-        textoTerminado
-            ? "📚 Ya terminaste la lectura. Puedes revisar el texto mientras continúa el tiempo."
-            : "📖 ¡Comenzó el reto! Sigue las palabras con atención."
-    );
-
-    if (!textoTerminado && intervaloLectura === null) {
-        iniciarResaltado();
-    }
-
-    iniciarTemporizador();
-}
-
 function iniciarResaltado() {
-
-    if (textoTerminado) {
-        return;
-    }
 
     const tiempoPorPalabra = 60000 / velocidad;
 
@@ -533,19 +508,24 @@ function iniciarResaltado() {
             "palabra-" + indicePalabra
         );
 
+        // Cuando llega al final del texto
         if (!palabra) {
 
             clearInterval(intervaloLectura);
-
             intervaloLectura = null;
 
-            textoTerminado = true;
+            lecturaTerminada = true;
 
             actualizarProgreso();
 
             actualizarMensaje(
-                "📚 ¡Has terminado la lectura! Puedes revisar el texto mientras continúa el tiempo."
+                "📚 ¡Has terminado la lectura! Pasemos a las preguntas."
             );
+
+            // Pasar automáticamente a las preguntas
+            setTimeout(() => {
+                mostrarPantallaPreguntas();
+            }, 1200);
 
             return;
         }
