@@ -1,4 +1,3 @@
-
 let velocidad = 160;
 let indicePalabra = 0;
 let intervaloLectura = null;
@@ -6,58 +5,33 @@ let temporizador = null;
 let segundosRestantes = 600;
 let pausado = false;
 let lecturaTerminada = false;
-
+let textoTerminado = false;
 let preguntas = [];
 let preguntaActual = 0;
 let respuestasCorrectas = 0;
 let seleccionActual = null;
-
-// ======================================================
-// NIVEL SELECCIONADO
-// ======================================================
-
 let nivelSeleccionado = "6-7";
 
 const datosNiveles = {
-
     "6-7": {
         nombre: "🌱 EXPLORADORES — 6.º–7.º",
         titulo: "Un visitante de un pequeño planeta"
     },
-
     "8-9": {
         nombre: "🔎 INVESTIGADORES — 8.º–9.º",
         titulo: "Una muerte que todos conocían"
     },
-
     "10-11": {
         nombre: "🧠 PENSADORES — 10.º–11.º",
         titulo: "La transformación"
     }
-
 };
 
-// ======================================================
-// INICIO
-// ======================================================
-
 document.addEventListener("DOMContentLoaded", () => {
-
     cargarLectura();
-
 });
 
-
-// ======================================================
-// CARGAR LECTURA
-// ======================================================
-
-// ======================================================
-// SELECCIONAR NIVEL
-// ======================================================
-
 function seleccionarNivel(nivel) {
-
     nivelSeleccionado = nivel;
 
     const datos = datosNiveles[nivel];
@@ -95,9 +69,7 @@ function seleccionarNivel(nivel) {
     }
 
     reiniciarLectura();
-
     cargarLectura();
-
 }
 
 function comenzarReto() {
@@ -116,14 +88,13 @@ function comenzarReto() {
 }
 
 function cargarLectura() {
-
     const lectura = document.getElementById("lectura");
 
     if (!lectura) {
         return;
     }
 
-   const lecturas = {
+    const lecturas = {
 
     "6-7": `
 En una región de montañas y caminos largos, un piloto viajaba solo cuando una falla en su avión lo obligó a realizar un aterrizaje de emergencia en medio de un lugar desértico. No había casas cerca, tampoco árboles ni personas a la vista. Solo había arena, silencio y un cielo enorme. El piloto sabía que debía reparar su avión pronto, porque no tenía suficiente agua ni alimentos para permanecer allí durante muchos días.
@@ -494,7 +465,7 @@ Y esa pregunta sigue siendo actual porque, en muchas situaciones cotidianas, pod
 `
 };
 
-const texto = lecturas[nivelSeleccionado]; 
+const texto = lecturas[nivelSeleccionado];
 
     if (!texto) {
         return;
@@ -509,18 +480,15 @@ const texto = lecturas[nivelSeleccionado];
         const span = document.createElement("span");
 
         span.textContent = palabra + " ";
+
         span.classList.add("palabra");
+
         span.id = "palabra-" + indice;
 
         lectura.appendChild(span);
 
     });
-
 }
-
-// ======================================================
-// INICIAR LECTURA
-// ======================================================
 
 function iniciarLectura() {
 
@@ -528,28 +496,26 @@ function iniciarLectura() {
         reiniciarLectura();
     }
 
-    if (intervaloLectura !== null) {
-        return;
-    }
-
     pausado = false;
 
     actualizarMensaje(
-        "📖 ¡Comenzó el reto! Sigue las palabras con atención."
+        textoTerminado
+            ? "📚 Ya terminaste la lectura. Puedes revisar el texto mientras continúa el tiempo."
+            : "📖 ¡Comenzó el reto! Sigue las palabras con atención."
     );
 
-    iniciarResaltado();
+    if (!textoTerminado && intervaloLectura === null) {
+        iniciarResaltado();
+    }
 
     iniciarTemporizador();
-
 }
 
-
-// ======================================================
-// RESALTADO DE PALABRAS
-// ======================================================
-
 function iniciarResaltado() {
+
+    if (textoTerminado) {
+        return;
+    }
 
     const tiempoPorPalabra = 60000 / velocidad;
 
@@ -569,9 +535,19 @@ function iniciarResaltado() {
 
         if (!palabra) {
 
-            indicePalabra = 0;
-            return;
+            clearInterval(intervaloLectura);
 
+            intervaloLectura = null;
+
+            textoTerminado = true;
+
+            actualizarProgreso();
+
+            actualizarMensaje(
+                "📚 ¡Has terminado la lectura! Puedes revisar el texto mientras continúa el tiempo."
+            );
+
+            return;
         }
 
         palabra.classList.add("activa");
@@ -586,13 +562,7 @@ function iniciarResaltado() {
         actualizarProgreso();
 
     }, tiempoPorPalabra);
-
 }
-
-
-// ======================================================
-// TEMPORIZADOR DE 10 MINUTOS
-// ======================================================
 
 function iniciarTemporizador() {
 
@@ -611,19 +581,11 @@ function iniciarTemporizador() {
         actualizarTiempo();
 
         if (segundosRestantes <= 0) {
-
             finalizarLectura();
-
         }
 
     }, 1000);
-
 }
-
-
-// ======================================================
-// PAUSAR / REANUDAR
-// ======================================================
 
 function pausarLectura() {
 
@@ -644,13 +606,7 @@ function pausarLectura() {
         );
 
     }
-
 }
-
-
-// ======================================================
-// VELOCIDAD
-// ======================================================
 
 function aumentarVelocidad() {
 
@@ -663,9 +619,7 @@ function aumentarVelocidad() {
     actualizarVelocidad();
 
     reiniciarIntervaloLectura();
-
 }
-
 
 function disminuirVelocidad() {
 
@@ -678,43 +632,36 @@ function disminuirVelocidad() {
     actualizarVelocidad();
 
     reiniciarIntervaloLectura();
-
 }
-
 
 function actualizarVelocidad() {
 
-    const elemento = document.getElementById("velocidad");
+    const elemento =
+        document.getElementById("velocidad");
 
     if (elemento) {
         elemento.textContent = velocidad;
     }
-
 }
-
 
 function reiniciarIntervaloLectura() {
 
-    if (intervaloLectura === null) {
-        return;
+    if (intervaloLectura !== null) {
+
+        clearInterval(intervaloLectura);
+
+        intervaloLectura = null;
     }
 
-    clearInterval(intervaloLectura);
-
-    intervaloLectura = null;
-
-    iniciarResaltado();
-
+    if (!textoTerminado) {
+        iniciarResaltado();
+    }
 }
-
-
-// ======================================================
-// PROGRESO
-// ======================================================
 
 function actualizarProgreso() {
 
-    const palabras = document.querySelectorAll(".palabra");
+    const palabras =
+        document.querySelectorAll(".palabra");
 
     if (palabras.length === 0) {
         return;
@@ -740,13 +687,7 @@ function actualizarProgreso() {
     if (barra) {
         barra.style.width = porcentaje + "%";
     }
-
 }
-
-
-// ======================================================
-// TIEMPO
-// ======================================================
 
 function actualizarTiempo() {
 
@@ -765,22 +706,17 @@ function actualizarTiempo() {
             String(minutos).padStart(2, "0") +
             ":" +
             String(segundos).padStart(2, "0");
-
     }
-
 }
-
-
-// ======================================================
-// FINALIZAR LECTURA
-// ======================================================
 
 function finalizarLectura() {
 
     clearInterval(intervaloLectura);
+
     clearInterval(temporizador);
 
     intervaloLectura = null;
+
     temporizador = null;
 
     lecturaTerminada = true;
@@ -794,13 +730,7 @@ function finalizarLectura() {
     );
 
     mostrarPantallaPreguntas();
-
 }
-
-
-// ======================================================
-// PANTALLAS
-// ======================================================
 
 function mostrarPantallaPreguntas() {
 
@@ -819,21 +749,11 @@ function mostrarPantallaPreguntas() {
     }
 
     iniciarPreguntas();
-
 }
-
-
-// ======================================================
-// PREGUNTAS
-// ======================================================
 
 function iniciarPreguntas() {
 
     const preguntasPorNivel = {
-
-        // ==================================================
-        // EXPLORADORES — 6.º–7.º
-        // ==================================================
 
         "6-7": [
 
@@ -986,17 +906,11 @@ function iniciarPreguntas() {
                 correcta: 2,
                 tipo: "Crítica"
             }
-
         ],
-
-
-        // ==================================================
-        // INVESTIGADORES — 8.º–9.º
-        // ==================================================
 
         "8-9": [
 
-            {
+                {
                 pregunta:
                     "¿Qué noticia comenzó a circular por el pueblo?",
 
@@ -1145,13 +1059,7 @@ function iniciarPreguntas() {
                 correcta: 2,
                 tipo: "Crítica"
             }
-
         ],
-
-
-        // ==================================================
-        // PENSADORES — 10.º–11.º
-        // ==================================================
 
         "10-11": [
 
@@ -1304,15 +1212,8 @@ function iniciarPreguntas() {
                 correcta: 2,
                 tipo: "Crítica"
             }
-
         ]
-
     };
-
-
-    // ==================================================
-    // CARGAR PREGUNTAS DEL NIVEL SELECCIONADO
-    // ==================================================
 
     preguntas = preguntasPorNivel[nivelSeleccionado];
 
@@ -1324,15 +1225,11 @@ function iniciarPreguntas() {
     preguntas = mezclarArray(preguntas);
 
     preguntaActual = 0;
+
     respuestasCorrectas = 0;
 
     mostrarPregunta();
-
 }
-
-// ======================================================
-// MOSTRAR PREGUNTA
-// ======================================================
 
 function mostrarPregunta() {
 
@@ -1390,13 +1287,7 @@ function mostrarPregunta() {
         opciones.appendChild(boton);
 
     });
-
 }
-
-
-// ======================================================
-// SELECCIONAR RESPUESTA
-// ======================================================
 
 function seleccionarRespuesta(
     boton,
@@ -1437,7 +1328,6 @@ function seleccionarRespuesta(
 
             feedback.textContent =
                 "✅ ¡Respuesta correcta!";
-
         }
 
     } else {
@@ -1449,9 +1339,7 @@ function seleccionarRespuesta(
 
             feedback.textContent =
                 "❌ No es la respuesta correcta. Revisa nuevamente las ideas del texto.";
-
         }
-
     }
 
     const siguiente =
@@ -1460,13 +1348,7 @@ function seleccionarRespuesta(
     if (siguiente) {
         siguiente.style.display = "inline-block";
     }
-
 }
-
-
-// ======================================================
-// SIGUIENTE PREGUNTA
-// ======================================================
 
 function siguientePregunta() {
 
@@ -1479,7 +1361,9 @@ function siguientePregunta() {
         document.getElementById("siguiente");
 
     if (feedback) {
+
         feedback.className = "feedback";
+
         feedback.textContent = "";
     }
 
@@ -1492,17 +1376,10 @@ function siguientePregunta() {
         mostrarResultado();
 
         return;
-
     }
 
     mostrarPregunta();
-
 }
-
-
-// ======================================================
-// RESULTADO
-// ======================================================
 
 function mostrarResultado() {
 
@@ -1535,43 +1412,49 @@ function mostrarResultado() {
         document.getElementById("mensaje-final");
 
     if (puntaje) {
+
         puntaje.textContent =
             porcentaje + "%";
     }
 
     let mensaje = "";
+
     let icono = "";
 
     if (porcentaje >= 90) {
 
         icono = "🏆";
+
         mensaje =
             "¡Excelente! Has demostrado una comprensión crítica muy destacada.";
 
     } else if (porcentaje >= 80) {
 
         icono = "🧠";
+
         mensaje =
             "¡Muy bien! Eres un lector capaz de interpretar y analizar.";
 
     } else if (porcentaje >= 70) {
 
         icono = "📚";
+
         mensaje =
             "Buen trabajo. Sigue fortaleciendo tu comprensión.";
 
     } else if (porcentaje >= 60) {
 
         icono = "🌱";
+
         mensaje =
             "Estás avanzando. Volver al texto puede ayudarte a comprender mejor.";
 
     } else {
 
         icono = "🔎";
+
         mensaje =
             "Te recomendamos volver a leer el texto y realizar nuevamente el reto.";
-
     }
 
     if (insignia) {
@@ -1582,31 +1465,37 @@ function mostrarResultado() {
         mensajeFinal.textContent = mensaje;
     }
 
-document.getElementById("correctas").textContent = respuestasCorrectas;
-document.getElementById("velocidad-final").textContent = velocidad;
+    document.getElementById("correctas").textContent =
+        respuestasCorrectas;
 
+    document.getElementById("velocidad-final").textContent =
+        velocidad;
 }
-
-
-// ======================================================
-// REINICIAR LECTURA
-// ======================================================
 
 function reiniciarLectura() {
 
     clearInterval(intervaloLectura);
+
     clearInterval(temporizador);
 
     intervaloLectura = null;
+
     temporizador = null;
 
     velocidad = 160;
+
     indicePalabra = 0;
+
     segundosRestantes = 600;
+
     pausado = false;
+
     lecturaTerminada = false;
 
+    textoTerminado = false;
+
     actualizarVelocidad();
+
     actualizarTiempo();
 
     const barra =
@@ -1626,13 +1515,7 @@ function reiniciarLectura() {
     document.querySelectorAll(".palabra").forEach(p => {
         p.classList.remove("activa");
     });
-
 }
-
-
-// ======================================================
-// NUEVO RETO
-// ======================================================
 
 function nuevoReto() {
 
@@ -1655,13 +1538,7 @@ function nuevoReto() {
     actualizarMensaje(
         "Pulsa 'Iniciar lectura' para comenzar nuevamente."
     );
-
 }
-
-
-// ======================================================
-// UTILIDADES
-// ======================================================
 
 function actualizarMensaje(texto) {
 
@@ -1671,9 +1548,7 @@ function actualizarMensaje(texto) {
     if (mensaje) {
         mensaje.textContent = texto;
     }
-
 }
-
 
 function mezclarArray(array) {
 
@@ -1693,9 +1568,7 @@ function mezclarArray(array) {
             array[j],
             array[i]
         ];
-
     }
 
     return array;
-
 }
